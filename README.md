@@ -19,7 +19,7 @@ SkHttp is a powerful Skript addon that provides HTTP client functionality, WebSo
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/Rajnasasd/SkHttp/releases) page
+1. Download the latest release from the [Releases](https://github.com/NikitaRTN/SkHttp/releases) page
 2. Place the `SkHttp-x.x.jar` file in your server's `plugins` folder
 3. Restart your server
 4. The plugin will automatically check for compatibility and disable itself if requirements are not met
@@ -33,50 +33,11 @@ This plugin automatically validates version compatibility on startup:
 
 If your server doesn't meet these requirements, the plugin will disable itself and display an error message.
 
-## Usage Examples
-
-### HTTP Requests
-
-```skript
-# Simple GET request
-set {_response} to http get "https://api.example.com/data"
-
-# POST request with JSON data
-set {_data} to new json object
-set json "name" of {_data} to "test"
-set {_response} to http post "https://api.example.com/users" with data {_data}
-```
-
-### WebSocket
-
-```skript
-# Create WebSocket connection
-set {_ws} to new websocket "wss://echo.websocket.org"
-
-# Send message
-send websocket message "Hello World!" to {_ws}
-```
-
-### Web Server
-
-```skript
-# Create HTTP endpoint
-create endpoint "/api/test" with method "GET":
-    respond with "Hello from SkHttp!"
-```
-
-### Discord Webhooks
-
-```skript
-# Send Discord webhook
-send discord webhook to "YOUR_WEBHOOK_URL" with content "Hello Discord!"
-```
-
 ## Building from Source
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/Rajnasasd/SkHttp.git
+   git clone https://github.com/NikitaRTN/SkHttp.git
    cd SkHttp
    ```
 
@@ -97,7 +58,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-If you encounter any issues or have questions, please open an issue on the [GitHub Issues](https://github.com/Rajnasasd/SkHttp/issues) page.
+If you encounter any issues or have questions, please open an issue on the [GitHub Issues](https://github.com/NikitaRTN/SkHttp/issues) page.
 
 ## Changelog
 
