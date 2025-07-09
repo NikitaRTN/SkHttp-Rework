@@ -1,0 +1,11 @@
+name: SkHttp
+version: '@version@'
+main: lol.aabss.skhttp.SkHttp
+api-version: '1.21'
+depend: [Skript]
+softdepend: [SkJson]
+authors: [aabss]
+description: Http Client and other web things in a skript addon. 
+commands:
+  skhttp:
+    permission: skhttp.command

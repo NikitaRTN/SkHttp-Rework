@@ -1,0 +1,64 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "8.1.1"
+}
+
+group = "lol.aabss"
+version = "1.6"
+
+repositories {
+    mavenCentral()
+    maven {url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"}
+    maven {url = "https://oss.sonatype.org/content/groups/public/"}
+    maven {url = "https://repo.skriptlang.org/releases"}
+    maven {url = "https://jitpack.io"}
+}
+
+dependencies {
+    implementation "org.jetbrains:annotations:24.0.0"
+    implementation "com.github.SkriptLang:skript-reflect:2.4-dev1"
+    compileOnly "org.spigotmc:spigot-api:1.21.4-R0.1-SNAPSHOT"
+    implementation "com.github.SkriptLang:Skript:2.11.0"
+    implementation "com.github.ItsRadiiX:Discord-Webhooks:3df5653b8b"
+}
+
+shadowJar {
+    dependencies {
+        include(dependency("com.github.ItsRadiiX:Discord-Webhooks:3df5653b8b"))
+        include(dependency("org.jetbrains:annotations:24.0.0"))
+        include(dependency("com.github.SkriptLang:skript-reflect:2.4-dev1"))
+    }
+    relocate 'com.itsradiix.discordwebhook', 'lol.aabss.skhttp.libs.discordwebhook'
+    relocate 'org.jetbrains.annotations', 'lol.aabss.skhttp.libs.annotations'
+    archiveClassifier = ''
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
+}
+
+def oldestJava = 17
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs += ['-source', '' + oldestJava, '-target', '' + oldestJava]
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset "UTF-8"
+    filesMatching("plugin.yml") {
+        expand props
+    }
+    filesMatching("lang/default.lang") {
+        expand props
+    }
+    from ("lang") {
+        include "**/*"
+        into "lang/"
+    }
+    filesNotMatching("**/*.png") {
+        filter ReplaceTokens, tokens: ["version": project.version]
+    }
+}
