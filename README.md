@@ -15,7 +15,7 @@ SkHttp is a powerful Skript addon that provides HTTP client functionality, WebSo
 
 - **Minecraft**: 1.21.4+
 - **Skript**: 2.11+
-- **Java**: 17+
+- **Java**: 21+
 
 ## Installation
 
