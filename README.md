@@ -58,7 +58,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## The source code
 
-If you want to change the code or view its contents, go to [GitHub Code]([https://github.com/NikitaRTN/SkHttp/](https://github.com/NikitaRTN/SkHttp-Rework)) page.
+If you want to change the code or view its contents, go to [Code](https://github.com/NikitaRTN/SkHttp-Rework) page.
 
 ## Changelog
 
