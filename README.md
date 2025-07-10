@@ -19,7 +19,7 @@ SkHttp is a powerful Skript addon that provides HTTP client functionality, WebSo
 
 ## Installation
 
-1. Download the latest release from the [Releases](https://github.com/NikitaRTN/SkHttp/releases) page
+1. Download the latest release from the [Releases](https://github.com/NikitaRTN/SkHttp-Rework/releases) page
 2. Place the `SkHttp-x.x.jar` file in your server's `plugins` folder
 3. Restart your server
 4. The plugin will automatically check for compatibility and disable itself if requirements are not met
@@ -58,7 +58,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## The source code
 
-If you want to change the code or view its contents, go to [GitHub Code](https://github.com/NikitaRTN/SkHttp/) page.
+If you want to change the code or view its contents, go to [GitHub Code]([https://github.com/NikitaRTN/SkHttp/](https://github.com/NikitaRTN/SkHttp-Rework)) page.
 
 ## Changelog
 
