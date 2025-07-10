@@ -56,9 +56,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Support
+## The source code
 
-If you encounter any issues or have questions, please open an issue on the [GitHub Issues](https://github.com/NikitaRTN/SkHttp/issues) page.
+If you want to change the code or view its contents, go to [GitHub Code](https://github.com/NikitaRTN/SkHttp/) page.
 
 ## Changelog
 
@@ -68,6 +68,3 @@ If you encounter any issues or have questions, please open an issue on the [GitH
 - Added automatic version validation
 - Improved dependency management
 - Fixed Discord Webhooks integration
-
-### Previous Versions
-See [CHANGELOG.md](CHANGELOG.md) for complete version history.
