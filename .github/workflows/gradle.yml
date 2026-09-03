@@ -1,42 +1,71 @@
-name: Java CI with Gradle
-on: [push, pull_request]
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       - name: Set up JDK 21
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v5
         with:
-          distribution: 'temurin'
-          java-version: '21'
-      - name: Build with Gradle
-        run: chmod +x ./gradlew
-      - name: Build Action
-        uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
-        with:
-          arguments: shadowJar
-      - name: Upload artifact
+          distribution: temurin
+          java-version: "21"
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v5
+      - name: Build and check
+        run: ./gradlew clean check shadowJar --no-daemon
+      - name: Upload plugin artifact
         uses: actions/upload-artifact@v4
         with:
-          name: SkHttp
-          path: build/libs/**
+          name: plugin-jar
+          path: build/libs/*.jar
+          if-no-files-found: error
 
-  test:
+  functional-test:
     runs-on: ubuntu-latest
-    needs: [build]
+    needs: build
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Download artifacts
+      - name: Checkout
+        uses: actions/checkout@v5
+      - name: Download plugin artifact
         uses: actions/download-artifact@v4
         with:
-          path: extra-plugins/
-          merge-multiple: true
-      - name: Run tests
+          name: plugin-jar
+          path: extra-plugins
+      - name: Load and test bundled Skript examples
         uses: SkriptLang/skript-test-action@v1.1
         with:
           test_script_directory: examples
           skript_repo_ref: 2.14.3
-          extra_plugins_directory: extra-plugins/
+          extra_plugins_directory: extra-plugins
+  release:
+    if: github.ref_type == 'tag' && startsWith(github.ref_name, 'v')
+    runs-on: ubuntu-latest
+    needs: [build, functional-test]
+    permissions:
+      contents: write
+    steps:
+      - name: Download tested plugin artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: plugin-jar
+          path: release
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: release/*.jar
