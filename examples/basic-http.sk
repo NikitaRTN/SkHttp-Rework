@@ -1,0 +1,23 @@
+# A minimal GET request example for SkHttp-Rework.
+# Copy this file to plugins/Skript/scripts and run /sk reload basic-http.
+
+command /skhttp-example:
+    permission: skhttp.example
+    trigger:
+        http request builder stored in {_request}:
+            url: "https://httpbin.org/get"
+            method: "GET"
+            timeout: 10 seconds
+            headers:
+                Accept: application/json
+                User-Agent: SkHttp-Rework/1.6
+
+        send request using {_request}
+        set {_response} to last response
+        set {_status} to status code of {_response}
+
+        if {_status} = 200:
+            send "SkHttp request succeeded."
+            send body of {_response}
+        else:
+            send "SkHttp request failed with status %{_status}%."
