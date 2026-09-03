@@ -38,5 +38,5 @@ jobs:
         uses: SkriptLang/skript-test-action@v1.1
         with:
           test_script_directory: examples
-          skript_repo_ref: 2.16.2
+          skript_repo_ref: 2.14.3
           extra_plugins_directory: extra-plugins/
