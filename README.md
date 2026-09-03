@@ -24,6 +24,16 @@ SkHttp is a powerful Skript addon that provides HTTP client functionality, WebSo
 3. Restart your server
 4. The plugin will automatically check for compatibility and disable itself if requirements are not met
 
+## Quick start
+
+Copy [`examples/basic-http.sk`](examples/basic-http.sk) to `plugins/Skript/scripts`, then reload it:
+
+```text
+/sk reload basic-http
+```
+
+Run `/skhttp-example` in-game. The example sends a GET request, checks the response status, and prints the response body. Start with this synchronous version to verify the installation before adapting it to asynchronous requests.
+
 ## Version Compatibility
 
 This plugin automatically validates version compatibility on startup:
@@ -37,8 +47,8 @@ If your server doesn't meet these requirements, the plugin will disable itself a
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/NikitaRTN/SkHttp.git
-   cd SkHttp
+   git clone https://github.com/NikitaRTN/SkHttp-Rework.git
+   cd SkHttp-Rework
    ```
 
 2. Build the plugin:
